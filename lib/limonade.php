@@ -1537,7 +1537,9 @@ function txt($content_or_func, $layout = '', $locals = array())
 }
 
 /**
- * Returns json representation of data with proper http headers
+ * Returns json representation of data with proper http headers.
+ * On PHP 5 < PHP 5.2.0, you must provide your own implementation of the
+ * <code>json_encode()</code> function beore using <code>json()</code>.
  *
  * @param string $data 
  * @param int $json_option
@@ -2612,6 +2614,21 @@ if(!function_exists('htmlspecialchars_decode'))
 		return limonade_htmlspecialchars_decode($string, $quote_style);
 	}
 }
+
+if(!function_exists('json_encode'))
+{
+	/**
+	 * for PHP 5 < PHP 5.2.0
+	 *
+	 */
+	function json_encode()
+	{
+		trigger_error(
+      __FUNCTION__ . '(): no JSON functions available. Please provide your own implementation of ' . __FUNCTION__ . '() in order to use it', E_USER_WARNING
+    );
+	}
+}
+
 
 
 #   ================================= END ==================================   #
