@@ -2640,8 +2640,6 @@ function fallbacks_for_not_implemented_functions()
       );
     }
   }
-}
-
 
 
 #   ================================= END ==================================   #
