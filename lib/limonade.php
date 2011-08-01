@@ -511,6 +511,7 @@ function env($reset = null)
       $env[$var] =& $GLOBALS[$varname];
     }
 
+    /*
     $method = request_method($env);
     if($method == 'PUT' || $method == 'DELETE')
     {
@@ -525,9 +526,10 @@ function env($reset = null)
       }
       else
       {
-        parse_str(file_get_contents('php://input'), $GLOBALS[$varname]);
+        parse_str($RAW, $GLOBALS[$varname]);
       }
     }
+    */
   }
   return $env;
 }
