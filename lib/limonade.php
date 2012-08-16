@@ -1355,7 +1355,7 @@ function route_find($method, $path)
           $names = range($n_names, $n_matches - 1);
         }
         $arr_comb = array_combine($names, $matches);
-        $params = array_replace($params, $arr_comb);
+        $params = my_array_replace($params, $arr_comb);
       }
       $route["params"] = $params;
       return $route;
@@ -2580,7 +2580,36 @@ if(!function_exists('array_replace'))
   }
 }
 
-/**
+  function my_array_replace(array &$array, array &$array1 )
+  {
+    $args  = func_get_args();
+    $count = func_num_args();
+
+    for ($i = 0; $i < $count; ++$i)
+    {
+      if(is_array($args[$i]))
+      {
+        foreach ($args[$i] as $key => $val) {
+          if ($val !== null) {
+            $array[$key] = $val;
+          }
+        }
+      }
+
+      else
+      {
+        trigger_error(
+          __FUNCTION__ . '(): Argument #' . ($i+1) . ' is not an array',
+          E_USER_WARNING
+        );
+        return null;
+      }
+    }
+    return $array;
+  }
+
+
+  /**
  * Check if a string is an url
  *
  * This implementation no longer requires 
