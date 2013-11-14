@@ -983,7 +983,7 @@ function request_is_head($env = null)
  */
 function request_methods()
 {
-  return array("GET","POST","PUT","DELETE", "HEAD");
+  return array("GET","POST","PUT","DELETE", "HEAD", "OPTIONS");
 }
 
 /**
@@ -1115,6 +1115,19 @@ function dispatch_get($path_or_array, $callback, $options = array())
 {
   route("GET", $path_or_array, $callback, $options);
   route("HEAD", $path_or_array, $callback, $options);
+}
+
+/**
+ * Add an OPTIONS route
+ *
+ * @param string $path_or_array
+ * @param string $callback
+ * @param array $options (optional). See {@link route()} for available options.
+ * @return void
+ */
+function dispatch_options($path_or_array, $callback, $options = array())
+{
+  route("OPTIONS", $path_or_array, $callback, $options);
 }
 
 /**
