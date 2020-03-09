@@ -115,7 +115,7 @@ function remove_magic_quotes($array)
   return $array;
 }
 
-if (get_magic_quotes_gpc())
+if (false)
 {
   $_GET    = remove_magic_quotes($_GET);
   $_POST   = remove_magic_quotes($_POST);
@@ -1257,7 +1257,7 @@ function route_build($method, $path_or_array, $callback, $options = array())
 
   if($path[0] == "^")
   {
-    if($path{strlen($path) - 1} != "$") $path .= "$";
+    if($path[strlen($path) - 1] != "$") $path .= "$";
      $pattern = "#".$path."#i";
   }
   else if(empty($path) || $path == "/")
